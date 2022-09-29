@@ -19,11 +19,9 @@ public class TestaListagem {
 
 		while (rst.next()) {
 			Integer id = rst.getInt("ID");
-			System.out.println(id);
 			String nome = rst.getString("NOME");
-			System.out.println(nome);
 			String descricao = rst.getString("DESCRICAO");
-			System.out.println(descricao);
+			System.out.println(id + " - " + nome + " - " + descricao);
 		}
 
 		connection.close();
