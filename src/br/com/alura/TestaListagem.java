@@ -1,22 +1,23 @@
 package br.com.alura;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 public class TestaListagem {
+	
 	public static void main(String[] args) throws SQLException {
-		Connection connection = DriverManager.getConnection(
-				"jdbc:mysql://localhost/loja_virtual?useTimezone=true&serverTimezone=UTC", "root", "54321");
+		
+		ConnectionFactory connectionFactory = new ConnectionFactory();
+		Connection connection = connectionFactory.recuperarConexao();
 
 		Statement stm = connection.createStatement();
 		stm.execute("SELECT ID, NOME, DESCRICAO FROM PRODUTO");
 
 		ResultSet rst = stm.getResultSet();
-		
-		while(rst.next()) {
+
+		while (rst.next()) {
 			Integer id = rst.getInt("ID");
 			System.out.println(id);
 			String nome = rst.getString("NOME");
@@ -24,7 +25,7 @@ public class TestaListagem {
 			String descricao = rst.getString("DESCRICAO");
 			System.out.println(descricao);
 		}
-		
+
 		connection.close();
 	}
 }

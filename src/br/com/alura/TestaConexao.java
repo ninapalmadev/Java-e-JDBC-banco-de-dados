@@ -1,13 +1,13 @@
 package br.com.alura;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class TestaConexao {
 	public static void main(String[] args) throws SQLException {
-		Connection connection = DriverManager.getConnection(
-				"jdbc:mysql://localhost/loja_virtual?useTimezone=true&serverTimezone=UTC", "root", "54321");
+		
+		ConnectionFactory connectionFactory = new ConnectionFactory();
+		Connection connection = connectionFactory.recuperarConexao();
 		
 		System.out.println("Fechando conexao");
 		
